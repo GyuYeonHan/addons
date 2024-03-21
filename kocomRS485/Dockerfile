@@ -1,5 +1,5 @@
 #ARG BUILD_FROM="alpine:latest"
-FROM gks1020/mykocom:0.0.1
+FROM --platform=linux/arm64 python:3
 
 ENV LANG C.UTF-8
 
@@ -8,7 +8,7 @@ COPY run.sh makeconf.sh rs485.py /
 
 # Install requirements for add-on
 RUN apt-get -y update
-# RUN apt-get -y install jq
+RUN apt-get -y install jq
 RUN python3 -m pip install pyserial
 RUN python3 -m pip install paho-mqtt
 RUN python3 -m pip install typing_extensions
